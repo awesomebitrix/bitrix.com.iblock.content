@@ -161,17 +161,11 @@ class IblockContent extends CBitrixComponent
 		
 		global $APPLICATION;
 		
-		$arNavParams = [
-			"nPageSize" => $this->bitrix->arParams['PAGINATION']['COUNT'] ?: 10,
-			"bDescPageNumbering" => false,
-			"bShowAll" => false,
-		];
-		$arNavigation = \CDBResult::GetNavParams($arNavParams);
+		$pages_count = $this->bitrix->arParams['PAGINATION']['COUNT'] ?: 10;
+		$nav = \CDBResult::NavStringForCache($pages_count);
+		$cache_id = $APPLICATION->GetCurDir() . $nav;
 		
-		$get_params = $_GET['PAGEN_1'] ?: $_GET['PAGEN_2'] ?: $_GET['PAGEN_3'] ?: $_GET['PAGEN_4'] ?: $_GET['PAGEN_5'] ?: '';
-		$cache_id = $APPLICATION->GetCurDir() . $arNavigation['SESS_PAGEN'] . $get_params;
-		
-		if ($this->StartResultCache(false, $cache_id, $arNavigation))
+		if ($this->StartResultCache(false, $cache_id))
 		{
 			$this->arResult['ITEMS'] = $this->getData();
 			$this->arResult['PAGINATION'] = $this->pagination;
