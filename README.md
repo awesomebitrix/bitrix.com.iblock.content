@@ -5,7 +5,7 @@ bitrix_iblock
 
 ```php
 $APPLICATION->IncludeComponent(
-	"namespace:iblock.content",
+	"main:iblock.content",
 	"",
 	Array(
 		"IBLOCK_TYPE" => "news",
