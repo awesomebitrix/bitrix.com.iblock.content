@@ -26,18 +26,12 @@ $APPLICATION->IncludeComponent(
         "IMG_CACHE" => [
             // Не обязательный параметр
             "PREVIEW_PICTURE" => [
-                "SIZE" => [
-                    "width" => 200,
-                    "height" => 200
-                ],
+                "SIZE" => ["width" => 200, "height" => 200],
                 "TYPE" => BX_RESIZE_IMAGE_EXACT
             ],
             // Не обязательный параметр
             "DETAIL_PICTURE" => [
-                "SIZE" => [
-                    "width" => 200,
-                    "height" => 200
-                ],
+                "SIZE" => ["width" => 200, "height" => 200],
                 "TYPE" => BX_RESIZE_IMAGE_EXACT
             ]
         ],
