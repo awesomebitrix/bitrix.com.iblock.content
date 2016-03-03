@@ -133,8 +133,7 @@ class IblockContentComponent extends CBitrixComponent
         $arResult = [];
         $arItem   = [];
 
-        $rsElements = CIBlockElement::GetList($arSort, $arFilter, false,
-                $arPagination, $arSelect);
+        $rsElements = CIBlockElement::GetList($arSort, $arFilter, false, $arPagination, $arSelect);
 
         while ($ob = $rsElements->GetNextElement()) {
             $arItem               = $ob->GetFields();
@@ -209,7 +208,7 @@ class IblockContentComponent extends CBitrixComponent
 
         $pages_count = $this->bitrix->arParams['PAGINATION']['COUNT'] ? : 10;
         $nav         = CDBResult::NavStringForCache($pages_count);
-        $cache_id    = $APPLICATION->GetCurDir().$nav;
+        $cache_id    = $APPLICATION->GetCurDir() . $nav;
 
         if ($this->StartResultCache(false, $cache_id)) {
             $this->arResult['ITEMS']      = $this->getData();
