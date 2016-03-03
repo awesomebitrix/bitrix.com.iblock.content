@@ -1,13 +1,13 @@
-bitrix_iblock
-=============
+# iblock.content
 
 Универсальный компонент инфоблоков для CMS Bitrix (замена news.list)
+Вывод одностраничниго контента
 
 ```php
 $APPLICATION->IncludeComponent(
-	"main:iblock.content",
+	"falur:iblock.content",
 	"",
-	Array(
+	array(
 		"IBLOCK_TYPE" => "news",
 		"IBLOCK_ID" => "1",
 		"SORT_BY1" => "DATE_ACTIVE_FROM",
@@ -16,7 +16,27 @@ $APPLICATION->IncludeComponent(
 		"SORT_ORDER2" => "DESC",
 		"FILTER" => [],
 		"PAGE_ELEMENT_COUNT" => "4",
-		"RAND_ELEMENTS" => "N"
+		"RAND_ELEMENTS" => "N",
+        "PAGINATION" => [
+            "NAME" => "Страницы",
+            "TEMPLATE" => ".default"
+        ],
+        "IMG_CACHE" => [
+            "PREVIEW_PICTURE" => [
+                "SIZE" => [
+                    "width" => 200,
+                    "height" => 200
+                ],
+                "TYPE" => BX_RESIZE_IMAGE_EXACT
+            ],
+            "DETAIL_PICTURE" => [
+                "SIZE" => [
+                    "width" => 200,
+                    "height" => 200
+                ],
+                "TYPE" => BX_RESIZE_IMAGE_EXACT
+            ]
+        ]
 	)
 );
 ```
