@@ -17,11 +17,14 @@ $APPLICATION->IncludeComponent(
 		"FILTER" => [],
 		"PAGE_ELEMENT_COUNT" => "4",
 		"RAND_ELEMENTS" => "N",
+        // Не обязательный параметр
         "PAGINATION" => [
             "NAME" => "Страницы",
             "TEMPLATE" => ".default"
         ],
+        // Не обязательный параметр
         "IMG_CACHE" => [
+            // Не обязательный параметр
             "PREVIEW_PICTURE" => [
                 "SIZE" => [
                     "width" => 200,
@@ -29,6 +32,7 @@ $APPLICATION->IncludeComponent(
                 ],
                 "TYPE" => BX_RESIZE_IMAGE_EXACT
             ],
+            // Не обязательный параметр
             "DETAIL_PICTURE" => [
                 "SIZE" => [
                     "width" => 200,
@@ -36,7 +40,9 @@ $APPLICATION->IncludeComponent(
                 ],
                 "TYPE" => BX_RESIZE_IMAGE_EXACT
             ]
-        ]
+        ],
+        "CACHE_TYPE" => "A", 
+        "CACHE_TIME" => 3600 
 	)
 );
 ```

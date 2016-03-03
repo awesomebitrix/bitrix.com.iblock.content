@@ -149,23 +149,29 @@ class IblockContentComponent extends CBitrixComponent
                 ? CFile::GetFileArray($arItem['DETAIL_PICTURE'])
                 : null;
 
-            $arItem['PREVIEW_PICTURE_CACHE'] =
-                0 < $arItem['PREVIEW_PICTURE']
-                ? CFile::ResizeImageGet(
-                    $arItem['PREVIEW_PICTURE'],
-                    $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['SIZE'],
-                    $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['TYPE']
-                )
-                : null;
+            if (isset($this->arParams['IMG_CACHE'])) {
+                if (isset($this->arParams['IMG_CACHE']['PREVIEW_PICTURE'])) {
+                     $arItem['PREVIEW_PICTURE_CACHE'] =
+                        0 < $arItem['PREVIEW_PICTURE']
+                        ? CFile::ResizeImageGet(
+                            $arItem['PREVIEW_PICTURE'],
+                            $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['SIZE'],
+                            $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['TYPE']
+                        )
+                        : null;
+                }
 
-            $arItem['DETAIL_PICTURE_CACHE'] =
-                0 < $arItem['PREVIEW_PICTURE']
-                ? CFile::ResizeImageGet(
-                    $arItem['PREVIEW_PICTURE'],
-                    $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['SIZE'],
-                    $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['TYPE']
-                )
-                : null;
+                if (isset($this->arParams['IMG_CACHE']['DETAIL_PICTURE'])) {
+                    $arItem['DETAIL_PICTURE_CACHE'] =
+                        0 < $arItem['PREVIEW_PICTURE']
+                        ? CFile::ResizeImageGet(
+                            $arItem['PREVIEW_PICTURE'],
+                            $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['SIZE'],
+                            $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['TYPE']
+                        )
+                        : null;
+                }
+            }
 
             $arButtons = CIBlock::GetPanelButtons(
                     $arItem['IBLOCK_ID'], $arItem['ID'], 0,
