@@ -7,7 +7,7 @@
  * @author    Falur <ienakaev@ya.ru>
  * @link      https://github.com/falur/bitrix.com.iblock.content
  * @copyright 2015 - 2016 webgsite.ru
- * @license   MIT
+ * @license   GNU General Public License http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 use Bitrix\Main\Loader;
@@ -139,35 +139,39 @@ class IblockContentComponent extends CBitrixComponent
             $arItem               = $ob->GetFields();
             $arItem['PROPERTIES'] = $ob->GetProperties();
 
-            $arItem['PREVIEW_PICTURE'] = 0 < $arItem['PREVIEW_PICTURE']
-                                         ? CFile::GetFileArray($arItem['PREVIEW_PICTURE'])
-                                         : null;
+            $arItem['PREVIEW_PICTURE'] =
+                0 < $arItem['PREVIEW_PICTURE']
+                ? CFile::GetFileArray($arItem['PREVIEW_PICTURE'])
+                : null;
 
-            $arItem['DETAIL_PICTURE'] = 0 < $arItem['DETAIL_PICTURE']
-                                        ? CFile::GetFileArray($arItem['DETAIL_PICTURE'])
-                                        : null;
+            $arItem['DETAIL_PICTURE'] =
+                0 < $arItem['DETAIL_PICTURE']
+                ? CFile::GetFileArray($arItem['DETAIL_PICTURE'])
+                : null;
 
-            $arItem['PREVIEW_PICTURE_CACHE'] = 0 < $arItem['PREVIEW_PICTURE']
-                                               ? CFile::ResizeImageGet(
-                                                  $arItem['PREVIEW_PICTURE'],
-                                                  $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['SIZE'],
-                                                  $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['TYPE']
-                                                 )
-                                               : null;
+            $arItem['PREVIEW_PICTURE_CACHE'] =
+                0 < $arItem['PREVIEW_PICTURE']
+                ? CFile::ResizeImageGet(
+                    $arItem['PREVIEW_PICTURE'],
+                    $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['SIZE'],
+                    $this->arParams['IMG_CACHE']['PREVIEW_PICTURE']['TYPE']
+                )
+                : null;
 
-            $arItem['DETAIL_PICTURE_CACHE'] = 0 < $arItem['PREVIEW_PICTURE']
-                                              ? CFile::ResizeImageGet(
-                                                  $arItem['PREVIEW_PICTURE'],
-                                                  $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['SIZE'],
-                                                  $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['TYPE']
-                                                )
-                                              : null;
+            $arItem['DETAIL_PICTURE_CACHE'] =
+                0 < $arItem['PREVIEW_PICTURE']
+                ? CFile::ResizeImageGet(
+                    $arItem['PREVIEW_PICTURE'],
+                    $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['SIZE'],
+                    $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['TYPE']
+                )
+                : null;
 
             $arButtons = CIBlock::GetPanelButtons(
                     $arItem['IBLOCK_ID'], $arItem['ID'], 0,
                     [
-                    'SECTION_BUTTONS' => false,
-                    'SESSID' => false
+                        'SECTION_BUTTONS' => false,
+                        'SESSID' => false
                     ]
             );
 
