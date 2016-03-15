@@ -7,7 +7,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 		<ul class="uk-slideset uk-grid uk-flex-center">
 			<? foreach ($arResult['ITEMS'] as $arItem): ?>
 			<li>
-				<img src="<?= $arItem['PREVIEW_PICTURE_CACHE']['src'] ?>" alt="">
+				<div class="uk-panel uk-panel-box">
+					<div class="uk-panel-teaser">
+						<img src="<?= $arItem['PREVIEW_PICTURE_CACHE']['src'] ?>" alt="">
+					</div>
+					<div class="uk-h3"><?= $arItem['NAME'] ?></div>
+					<p><?= $arItem['PREVIEW_TEXT'] ?></p>
+				</div>
 			</li>
 			<? endforeach; ?>
 		</ul>
@@ -15,6 +21,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 		<a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
 		<a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
 	</div>
-	
+
 	<ul class="uk-slideset-nav uk-dotnav uk-flex-center"></ul>
 </div>
