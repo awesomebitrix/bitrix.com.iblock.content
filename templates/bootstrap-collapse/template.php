@@ -1,3 +1,7 @@
+<?php
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
+?>
+
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 	<? foreach ($arResult['ITEMS'] as $id => $arItem): ?>
 	<div class="panel panel-default">

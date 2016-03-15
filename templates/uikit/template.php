@@ -24,7 +24,9 @@ $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], $ed, $msg);
 <div class="uk-article" id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
     <div class="uk-article-title"><?= $arItem['NAME'] ?></div>
 
-    <p class="uk-article-meta"><?= $arItem['DATE_ACTIVE_FROM'] ?></p>
+	<? if ($arItem['DATE_ACTIVE_FROM']): ?>
+	<p class="uk-article-meta"><?= $arItem['DATE_ACTIVE_FROM'] ?></p>
+	<? endif; ?>	
 
     <div class="uk-clearfix">
          <? if ($arItem['PREVIEW_PICTURE_CACHE'] || $arItem['DETAIL_PICTURE_CACHE']): ?>
@@ -40,7 +42,7 @@ $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], $ed, $msg);
    
     <hr class="uk-article-divider">
     
-    <a href="<?= $arItem['DETAIL_PAGE_URL'] ?>">Читать полностью</a>
+    <a href="<?= $arItem['DETAIL_PAGE_URL'] ?>">Подробнее</a>
 </div>
 <? endforeach; ?>
 

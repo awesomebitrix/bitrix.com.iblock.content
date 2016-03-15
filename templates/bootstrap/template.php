@@ -1,3 +1,7 @@
+<?php
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
+?>
+
 <? foreach ($arResult['ITEMS'] as $arItem): ?>
 <?php $isPic = $arItem['PREVIEW_PICTURE_CACHE']['src'] || $arItem['PREVIEW_PICTURE']['SRC']; ?>
 <div class="row">
@@ -22,7 +26,7 @@
 		<p><?= strip_tags($arItem['PREVIEW_TEXT']) ?></p>
 
 		<p class="text-muted">
-			<a href="<?= $arItem['DETAIL_PAGE_URL'] ?>">Подробнее ..</a>
+			<a href="<?= $arItem['DETAIL_PAGE_URL'] ?>">Подробнее</a>
 		</p>
 	</div>
 </div>

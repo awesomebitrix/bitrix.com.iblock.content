@@ -1,3 +1,7 @@
+<?php
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
+?>
+
 <div id="slider" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<? foreach ($arResult['ITEMS'] as $k => $arItem): ?>
