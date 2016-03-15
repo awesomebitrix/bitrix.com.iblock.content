@@ -20,12 +20,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 		<? endforeach; ?>
 	</div>
 
-	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	<a class="left carousel-control" href="#slider" role="button" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		<span class="sr-only">Назад</span>
 	</a>
 	
-	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	<a class="right carousel-control" href="#slider" role="button" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		<span class="sr-only">Далее</span>
 	</a>

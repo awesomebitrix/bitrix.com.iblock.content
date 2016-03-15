@@ -13,7 +13,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 			</h4>
 		</div>
 		
-		<div id="collapse<?= $id ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+		<div id="collapse<?= $id ?>" class="panel-collapse collapse <?= $id == 0 ? 'in' : 0 ?>" role="tabpanel" aria-labelledby="headingOne">
 			<div class="panel-body">
 				<?= $arItem['PREVIEW_TEXT'] ?>
 			</div>
