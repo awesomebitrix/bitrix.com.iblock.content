@@ -40,6 +40,62 @@ class IblockContentComponent extends CBitrixComponent
         return $arSort;
     }
 
+    public function onPrepareComponentParams($arParams)
+    {
+        if (isset($arParams['PAGINATION_NAME'])) {
+            $arParams['PAGINATION']['NAME'] = $arParams['PAGINATION_NAME'];
+        }
+
+        if (isset($arParams['PAGINATION_TEMPLATE'])) {
+            $arParams['PAGINATION']['TEMPLATE'] = $arParams['PAGINATION_TEMPLATE'];
+        }
+
+        if (!isset($arParams['ADD_CACHE_STRING'])) {
+            $arParams['ADD_CACHE_STRING'] = '';
+        }
+
+        if (!isset($arParams['IMG_CACHE'])) {
+            $arParams['IMG_CACHE'] = [
+                'PREVIEW_PICTURE' => [],
+                'DETAIL_PICTURE' => []
+            ];
+
+            if (isset($arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_TYPE'])) {
+                $arParams['IMG_CACHE']['PREVIEW_PICTURE'] = [
+                    'SIZE' => [
+                        'width' => isset($arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_WIDTH'])
+                                    ? $arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_WIDTH']
+                                    : 800,
+                        'height' => isset($arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_HEIGHT'])
+                                    ? $arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_HEIGHT']
+                                    : 600
+                    ],
+                    'TYPE' => isset($arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_TYPE'])
+                                ? $arParams['IMG_CACHE_PREVIEW_PICTURE_SIZE_TYPE']
+                                : BX_RESIZE_IMAGE_EXACT
+                ];
+            }
+
+            if (isset($arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_TYPE'])) {
+                $arParams['IMG_CACHE']['PREVIEW_PICTURE'] = [
+                    'SIZE' => [
+                        'width' => isset($arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_WIDTH'])
+                                    ? $arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_WIDTH']
+                                    : 800,
+                        'height' => isset($arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_HEIGHT'])
+                                    ? $arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_HEIGHT']
+                                    : 600
+                    ],
+                    'TYPE' => isset($arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_TYPE'])
+                                ? $arParams['IMG_CACHE_DETAIL_PICTURE_SIZE_TYPE']
+                                : BX_RESIZE_IMAGE_EXACT
+                ];
+            }
+        }
+
+        return $arParams;
+    }
+
     /**
      * Возвращает параметры фильтрации
      * 
@@ -150,7 +206,7 @@ class IblockContentComponent extends CBitrixComponent
                 : null;
 
             if (isset($this->arParams['IMG_CACHE'])) {
-                if (isset($this->arParams['IMG_CACHE']['PREVIEW_PICTURE'])) {
+                if (!empty($this->arParams['IMG_CACHE']['PREVIEW_PICTURE'])) {
                      $arItem['PREVIEW_PICTURE_CACHE'] =
                         0 < $arItem['PREVIEW_PICTURE']
                         ? CFile::ResizeImageGet(
@@ -161,11 +217,11 @@ class IblockContentComponent extends CBitrixComponent
                         : null;
                 }
 
-                if (isset($this->arParams['IMG_CACHE']['DETAIL_PICTURE'])) {
+                if (!empty($this->arParams['IMG_CACHE']['DETAIL_PICTURE'])) {
                     $arItem['DETAIL_PICTURE_CACHE'] =
-                        0 < $arItem['PREVIEW_PICTURE']
+                        0 < $arItem['DETAIL_PICTURE']
                         ? CFile::ResizeImageGet(
-                            $arItem['PREVIEW_PICTURE'],
+                            $arItem['DETAIL_PICTURE'],
                             $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['SIZE'],
                             $this->arParams['IMG_CACHE']['DETAIL_PICTURE']['TYPE']
                         )
@@ -218,7 +274,7 @@ class IblockContentComponent extends CBitrixComponent
 
         $pages_count = $this->bitrix->arParams['PAGINATION']['COUNT'] ? : 10;
         $nav         = CDBResult::NavStringForCache($pages_count);
-        $cache_id    = $APPLICATION->GetCurDir() . $nav;
+        $cache_id    = $APPLICATION->GetCurDir() . $nav . $this->arParams['ADD_CACHE_STRING'];
 
         if ($this->StartResultCache(false, $cache_id)) {
             $this->arResult['ITEMS']      = $this->getData();
